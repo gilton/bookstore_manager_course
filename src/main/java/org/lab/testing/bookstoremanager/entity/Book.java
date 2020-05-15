@@ -30,7 +30,7 @@ public class Book {
 	private String name;
 	
 	@Column(nullable = false)
-	private String pages;
+	private Integer pages;
 	
 	@Column(nullable = false)
 	private Integer chapters;

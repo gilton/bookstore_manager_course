@@ -1,8 +1,9 @@
 package org.lab.testing.bookstoremanager.controller;
 
+import javax.validation.Valid;
+
+import org.lab.testing.bookstoremanager.dto.BookDTO;
 import org.lab.testing.bookstoremanager.dto.MessageResponseDTO;
-import org.lab.testing.bookstoremanager.entity.Book;
-import org.lab.testing.bookstoremanager.repository.BookRepository;
 import org.lab.testing.bookstoremanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,8 @@ public class BookController {
 
 
 	@PostMapping
-	public MessageResponseDTO create(@RequestBody Book book) {
-		return bookService.create(book);
+	public MessageResponseDTO create(@RequestBody @Valid BookDTO bookDTO) {
+		return bookService.create(bookDTO);
 	}
 	
 }
