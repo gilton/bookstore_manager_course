@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.lab.testing.bookstoremanager.dto.BookDTO;
 import org.lab.testing.bookstoremanager.dto.MessageResponseDTO;
+import org.lab.testing.bookstoremanager.exception.BookNotFoundException;
 import org.lab.testing.bookstoremanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/{id}")
-	public BookDTO findById(@PathVariable Long id) {
+	public BookDTO findById(@PathVariable Long id) throws BookNotFoundException {
 		return bookService.findById(id);
 	}
 	

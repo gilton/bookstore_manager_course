@@ -1,10 +1,9 @@
 package org.lab.testing.bookstoremanager.service;
 
-import java.util.Optional;
-
 import org.lab.testing.bookstoremanager.dto.BookDTO;
 import org.lab.testing.bookstoremanager.dto.MessageResponseDTO;
 import org.lab.testing.bookstoremanager.entity.Book;
+import org.lab.testing.bookstoremanager.exception.BookNotFoundException;
 import org.lab.testing.bookstoremanager.mapper.BookMapper;
 import org.lab.testing.bookstoremanager.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,11 @@ public class BookService {
 				.build();
 	}
 
-	public BookDTO findById(Long id) {
-		Optional<Book> optionalBook = bookRepository.findById(id);
-		return bookMapper.toDTO(optionalBook.get());
+	public BookDTO findById(Long id) throws BookNotFoundException {
+		Book book = bookRepository.findById(id)
+				.orElseThrow(() -> new BookNotFoundException(id));
+		
+		return bookMapper.toDTO(book);
 	}
 	
 }
