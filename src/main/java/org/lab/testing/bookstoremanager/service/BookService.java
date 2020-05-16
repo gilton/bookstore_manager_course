@@ -1,5 +1,7 @@
 package org.lab.testing.bookstoremanager.service;
 
+import java.util.Optional;
+
 import org.lab.testing.bookstoremanager.dto.BookDTO;
 import org.lab.testing.bookstoremanager.dto.MessageResponseDTO;
 import org.lab.testing.bookstoremanager.entity.Book;
@@ -27,6 +29,11 @@ public class BookService {
 		return MessageResponseDTO.builder()
 				.message("Book created with ID "+bookSaved.getId())
 				.build();
+	}
+
+	public BookDTO findById(Long id) {
+		Optional<Book> optionalBook = bookRepository.findById(id);
+		return bookMapper.toDTO(optionalBook.get());
 	}
 	
 }
