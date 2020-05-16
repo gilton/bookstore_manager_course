@@ -9,9 +9,7 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Data
@@ -26,7 +24,7 @@ public class Author {
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
-	@Getter @Setter private String name;
+	private String name;
 	
 	@Column(nullable = false)
 	private Integer age;
