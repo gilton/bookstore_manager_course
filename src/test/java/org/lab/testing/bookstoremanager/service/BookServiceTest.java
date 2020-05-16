@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.lab.testing.bookstoremanager.dto.BookDTO;
@@ -15,6 +16,10 @@ import org.lab.testing.bookstoremanager.repository.BookRepository;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import lombok.var;
+
+
 
 @ExtendWith(MockitoExtension.class)
 public class BookServiceTest {
@@ -35,6 +40,18 @@ public class BookServiceTest {
 		assertEquals(expectedFoundBook.getName(), bookDTO.getName());
 		assertEquals(expectedFoundBook.getIsbn(), bookDTO.getIsbn());
 		assertEquals(expectedFoundBook.getPublisherName(), bookDTO.getPublisherName());
+	}
+	
+	public void whenAGivenIdCantFindABookThrowAnException() {
+		var invalidId = 10L;
+		
+//		when(bookRepository.findById(invalidId))
+//		.thenReturn(Optional.ofNullable(any(Book.class)));
+		
+		
+		
+		Assertions.assertThrows(BookNotFoundException.class, () -> bookService.findById(invalidId));
+		
 	}
 
 }
